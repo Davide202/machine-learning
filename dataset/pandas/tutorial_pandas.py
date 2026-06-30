@@ -2,7 +2,7 @@
 import pandas as pd
 import os
 
-iris_path = "../data/iris.csv"
+iris_path = "../../data/iris.csv"
 
 # Stampa a schermo il percorso della cartella di lavoro corrente da cui stai eseguendo lo script
 print(os.getcwd())

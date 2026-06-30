@@ -1,3 +1,3 @@
 
 
-pip install pandas numpy matplotlib sklearn.preprocessing ucimlrepo
+pip install pandas numpy matplotlib scikit-learn ucimlrepo
