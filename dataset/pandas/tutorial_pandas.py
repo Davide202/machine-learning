@@ -2,6 +2,8 @@
 import pandas as pd
 import os
 
+iris_path = "../data/iris.csv"
+
 # Stampa a schermo il percorso della cartella di lavoro corrente da cui stai eseguendo lo script
 print(os.getcwd())
 
@@ -10,7 +12,7 @@ print(os.getcwd())
 # header=None indica che il file non ha intestazioni originali valide.
 # names=[...] sovrascrive/imposta manualmente i nomi delle colonne.
 iris = pd.read_csv(
-    "../data/iris.csv", 
+    iris_path, 
     header=None, 
     names=["sepal_length","sepal_width","petal_length","petal_width","species"]
 )
@@ -74,7 +76,7 @@ iris_sampled.iloc[:10,1]
 # %%
 # Ricarica il DataFrame indicando che la riga 0 del CSV contiene le vecchie intestazioni (header=0) da ignorare/sostituire con 'names'.
 iris = pd.read_csv(
-    "../data/iris.csv", 
+    iris_path, 
     header=0, # =None,
     names=["sepal_length","sepal_width","petal_length","petal_width","species"]
 )
@@ -107,7 +109,7 @@ iris['species'].unique()
 # CREAZIONE MASCHERA
 # %%
 iris = pd.read_csv(
-    "../data/iris.csv", 
+    iris_path, 
     header=0, # =None,
     names=["sepal_length","sepal_width","petal_length","petal_width","species"]
 )
@@ -123,7 +125,7 @@ iris_long_petals.head()
 
 # %%
 iris = pd.read_csv(
-    "../data/iris.csv", 
+    iris_path, 
     header=0, # =None,
     names=["sepal_length","sepal_width","petal_length","petal_width","species"]
 )
@@ -136,7 +138,7 @@ iris_copy["species"].unique()
 # NORMALIZZAZIONE
 # %%
 iris = pd.read_csv(
-    "../data/iris.csv", 
+    iris_path, 
     header=0, # =None,
     names=["sepal_length","sepal_width","petal_length","petal_width","species"]
 )
@@ -173,7 +175,7 @@ iris.apply(np.count_nonzero,axis=0).head()
 
 # %%
 iris = pd.read_csv(
-    "../data/iris.csv", 
+    iris_path, 
     header=0, # =None,
     names=["sepal_length","sepal_width","petal_length","petal_width","species"]
 )
@@ -192,7 +194,7 @@ import numpy as np
 
 
 iris = pd.read_csv(
-    "../data/iris.csv", 
+    iris_path, 
     header=0, # =None,
     names=["sepal_length","sepal_width","petal_length","petal_width","species"]
 )
