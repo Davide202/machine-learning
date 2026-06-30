@@ -9,7 +9,7 @@
 import pandas as pd
 import numpy as np
 
-iris_path = "data/iris.csv"
+iris_path = "./data/iris.csv"
 iris_nan = pd.read_csv(iris_path)
 
 Y = iris_nan["class"].values 
