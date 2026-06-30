@@ -1,0 +1,28 @@
+Affrontiamo il problema dell'overfitting
+
+BIAS: Misura quanto sono distanti le nostre predizioni dai valori corretti
+
+VARIANZA: Misura la differenza nelle predizioni utilizzando diversi datasets,
+    ci dice quanto il modello è sensibile alla casualità dei dati nel set di addestramento
+
+TRADEOFF BIAS/VARIANZA
+    BIAS e VARIANZA sono altamente correlati:
+    il nostro lavoro è quello di riuscire a trovare la giusta combinazione 
+    per ottenere bias e varianza che siano entrambi più piccoli possibile.
+
+UNDERFITTING: bassa varianza e alto bias 
+
+OVERFITTING: basso bias e alta varianza (modello troppo complesso)
+
+Riconoscere l'overfitting:
+l'errore sul set di test è notevolmente maggiore dell'errore sul test di addestramento.
+Un gap eccessivo tra errore di addestramento ed errore di test è un indicatore di overfitting.
+
+SOLUZIONI:
+
+- Diminuire la complessità del modello rimuovendo alcune proprietà.
+- Diminuire il grado del polinomio.
+
+- Penalizzare i pesi utilizzando la regolarizzazione (CONSIGLIATO).
+
+

@@ -1,3 +1,3 @@
 
 
-pip install pandas numpy matplotlib scikit-learn ucimlrepo
+pip install ipykernel jupyter pandas numpy matplotlib scikit-learn ucimlrepo
