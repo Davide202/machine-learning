@@ -7,7 +7,12 @@ VARIANZA: Misura la differenza nelle predizioni utilizzando diversi datasets,
 
 TRADEOFF BIAS/VARIANZA
     BIAS e VARIANZA sono altamente correlati:
-    il nostro lavoro è quello di riuscire a trovare la giusta combinazione 
+    - alto bias alta varianza (male)
+    - basso bias alta varianza
+    - alto bias bassa varianza 
+    - basso bias bassa varianza (bene)
+
+    Il nostro lavoro è quello di riuscire a trovare la giusta combinazione 
     per ottenere bias e varianza che siano entrambi più piccoli possibile.
 
 UNDERFITTING: bassa varianza e alto bias 
@@ -15,13 +20,15 @@ UNDERFITTING: bassa varianza e alto bias
 OVERFITTING: basso bias e alta varianza (modello troppo complesso)
 
 Riconoscere l'overfitting:
-l'errore sul set di test è notevolmente maggiore dell'errore sul test di addestramento.
+confrontare l'errore sul set di addestramento con l'errore sul set di test,
+se l'errore sul set di test è notevolmente maggiore dell'errore sul test di addestramento,
+allora molto probabilmente il nostro modello soffre di overfitting.
 Un gap eccessivo tra errore di addestramento ed errore di test è un indicatore di overfitting.
 
 SOLUZIONI:
 
-- Diminuire la complessità del modello rimuovendo alcune proprietà.
-- Diminuire il grado del polinomio.
+- Diminuire la complessità del modello rimuovendo alcune proprietà,
+    ad esempio diminuire il grado del polinomio.
 
 - Penalizzare i pesi utilizzando la regolarizzazione (CONSIGLIATO).
 
