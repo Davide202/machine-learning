@@ -6,4 +6,6 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
 
 cd machine-learning
 
-pip install ipykernel jupyter pandas numpy matplotlib scikit-learn ucimlrepo seaborn
+pip install ipykernel jupyter pandas numpy matplotlib scikit-learn ucimlrepo seaborn 
+
+ python -m pip install graphviz
