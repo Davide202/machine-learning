@@ -117,9 +117,80 @@ print("Log Loss: " + str(log_loss(Y_test, Y_pred_proba)))
 
 
 # %%
-# Proviamo a visualizzare il Decision Boundary del modello addestrato. 
+# Visualizziamo i Decision Boundary richiamando il nostro modulo personalizzato
 
 from viz import showBounds 
-showBounds(lr, X_train, Y_train, labels=['Benigno', 'Maligno'], title='Decision Boundary - Logistic Regression')
+
+# 1. Grafico per il Training Set
+showBounds(
+    lr, 
+    X_train, 
+    Y_train, 
+    labels=['Benigno', 'Maligno'], 
+    title='Decision Boundary - Training Set',
+    xlabel='Errore Standard Raggio (Standardizzato)',
+    ylabel='Punti di Concavità Peggiori (Standardizzati)'
+)
+
+# 2. Grafico per il Test Set (per vedere come si comporta su dati mai visti!)
+showBounds(
+    lr, 
+    X_test, 
+    Y_test, 
+    labels=['Benigno', 'Maligno'], 
+    title='Decision Boundary - Test Set',
+    xlabel='Errore Standard Raggio (Standardizzato)',
+    ylabel='Punti di Concavità Peggiori (Standardizzati)'
+)
+
+
+# %%
+# Adesso proviamo a rieseguire la regressione logistica utilizzando tutte le proprietà del dataset,
+# eccetto l'id per vedere se il modello migliora le sue prestazioni. 
+
+X = breast_cancer.drop(['id', 'diagnosis'], axis=1).values
+Y = breast_cancer['diagnosis'].values   
+
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_state=0)    
+
+# Utilizziamo il LabelEncoder per convertire le etichette di classe in valori numerici (0 e 1)
+le = LabelEncoder()
+Y_train = le.fit_transform(Y_train)
+Y_test = le.transform(Y_test)
+
+Y_train[:5]
+
+
+# %% 
+# Standardizziamo il dataset per avere media 0 e deviazione standard 1,
+# in modo che le caratteristiche abbiano la stessa scala e il modello possa convergere più velocemente durante l'addestramento.     
+
+ss = StandardScaler()
+X_train = ss.fit_transform(X_train)     
+X_test = ss.transform(X_test)
+
+# %%
+# Eseguiamo la regressione logistica utilizzando la classe LogisticRegression di scikit-learn.
+
+#lr = LogisticRegression(random_state=0)
+lr = LogisticRegression()
+lr.fit(X_train, Y_train)
+
+# Adesso che abbiamo il nostro modello addestrato possiamo testarlo sui dati di test e vedere come si comporta.
+# Eseguiamo le predizioni sui dati di test e calcoliamo l'accuratezza del modello.
+
+Y_pred = lr.predict(X_test)
+#Y_pred_proba = lr.predict_proba(X_test) [:, 1]  # Probabilità della classe positiva
+Y_pred_proba = lr.predict_proba(X_test)
+
+print("Accuracy: " + str(accuracy_score(Y_test, Y_pred)))
+print("Log Loss: " + str(log_loss(Y_test, Y_pred_proba)))
+
+
+# OSS:
+lr = LogisticRegression(penalty='l2', C=1.0) 
+# sono i valori di default, C è l'inverso della forza di regolarizzazione, 
+# più piccolo è C più forte è la regolarizzazione                 
+
 
 # %%
