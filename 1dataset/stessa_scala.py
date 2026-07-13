@@ -29,7 +29,7 @@
 import pandas as pd
 import numpy as np
 
-wines_path = "../data/wine.csv"
+wines_path = "../data/wine/wine.csv"
 
 wines = pd.read_csv(wines_path,
                     usecols=[0,1,7],
