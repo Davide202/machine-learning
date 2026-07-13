@@ -13,7 +13,7 @@ print(os.getcwd())
 # names=[...] sovrascrive/imposta manualmente i nomi delle colonne.
 iris = pd.read_csv(
     iris_path, 
-    header=None, 
+    header=0, 
     names=["sepal_length","sepal_width","petal_length","petal_width","species"]
 )
 

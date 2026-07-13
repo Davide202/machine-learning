@@ -11,6 +11,7 @@ import numpy as np
 iris_path = "../data/iris.csv"
 iris_nan = pd.read_csv(
     iris_path,
+    header=0,
     names=["sepal.length","sepal.width","petal.length","petal.width","variety"]
 )
 
