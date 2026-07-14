@@ -43,7 +43,7 @@ iris_path = "../data/iris.csv"
 
 iris = pd.read_csv(
     iris_path,
-    
+    header=0,
     names=["sepal.length","sepal.width","petal.length","petal.width","class"]
 )
 
@@ -77,24 +77,38 @@ X2_test = X_test[:,:2]
 svc = LinearSVC(C=1.0)
 svc.fit(X2_train,Y_train)
 
-print("ACCURACY con 2 proprietà: TRAIN=%.4f TEST=%.4f" % (svc.score(X2_train,Y_train), svc.score(X2_test,Y_test)))
+accuracy_train = svc.score(X2_train,Y_train)
+accuracy_test = svc.score(X2_test,Y_test)
+
+print("ACCURACY con 2 proprietà: TRAIN=%.4f TEST=%.4f" % (accuracy_train, accuracy_test))
 # Questo modello presenta overfitting, 
 # potremmo provare a migliorarlo modificando il parametro di regolarizzazione C
 
+# %%
+# Importiamo la funzione dal nostro nuovo file viz_svm.py
+from viz_svm import plot_decision_boundaries
 
-# TODO DA TESTARE
-from viz import showBounds
-showBounds(
-    svc, 
-    X_train, 
-    Y_train, 
-    labels=['Benigno', 'Maligno'], 
-    title='Decision Boundary - Training Set',
-    xlabel='Errore Standard Raggio (Standardizzato)',
-    ylabel='Punti di Concavità Peggiori (Standardizzati)'
-)
+# Disegniamo i confini di decisione usando le 2 proprietà (X2_train)
+plot_decision_boundaries(svc, X2_train, Y_train, title="SVM Lineare - Confini di Decisione (2 Proprietà)")
+
 
 
 # %%
 # Costruiamo il modello con tutte le proprietà 
 
+
+# Aumentiamo max_iter per garantire che l'algoritmo converga senza mostrare avvisi rossi (Warning)
+svc_all = LinearSVC(C=1.0, max_iter=10000)
+svc_all.fit(X_train, Y_train)
+
+accuracy_train_all = svc_all.score(X_train, Y_train)
+accuracy_test_all = svc_all.score(X_test, Y_test)
+
+print("ACCURACY con TUTTE le proprietà: TRAIN=%.4f TEST=%.4f" % (accuracy_train_all, accuracy_test_all))
+
+# Come potrai notare eseguendo la cella, fornendo tutte e 4 le proprietà 
+# l'accuratezza sul Test Set salirà drasticamente rispetto all'uso di sole 2 feature!
+
+
+
+# %%
