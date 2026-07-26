@@ -36,6 +36,36 @@ centroids = km.cluster_centers_
 
 plt.scatter(centroids[:,0], centroids[:,1], c="red", alpha=0.5, s=200)
 
+
+# %% 
+# Per andare a determinare il numero ottimale di cluster in cui andare ad effettuare
+# la suddivisione dobbiamo utilizzare altre tecniche.
+# Una delle tecniche migliori è creare diversi modelli per diversi valori di k
+# e poi utilizzare l'elbow method sul grafico con la somma delle distanze al quadrato.
+
+ssd = {}
+
+for k in range(1,10):
+    km = KMeans(init='k-means++', n_clusters=k)
+    # con init=random abbiamo inizializzazione dei centroidi casuale
+    # ha il problema che due centroidi possono essere inizializzati in posizione troppo vicina
+    # per ovviare a questo problema possima utilizzare il il valore init=k-means++ 
+    # che si occupa di ottimizzare la distanza tra i centroidi per la selezione iniziale
+
+    km.fit(X)
+    ssd[k] = km.inertia_
+
+plt.plot( list(ssd.keys()), list(ssd.values()), marker="o")
+plt.title('Metodo del Gomito (Elbow Method)')
+plt.xlabel("Numero di clusters",fontsize=16)
+plt.ylabel("SSD (Inertia) - Somma delle distanze al quadrato", fontsize=16)
+plt.show()
+
+
+
+
+
+
 # %%
 # BONUS: Implementazione dell'ELBOW METHOD
 # Calcoliamo l'SSD (Inertia) per diversi valori di K (da 1 a 10)
