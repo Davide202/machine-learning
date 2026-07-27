@@ -9,6 +9,10 @@
 # Quindi per il nostro scopo utilizzeremo il MNIST.
 
 # %%
+import sys
+# Aggiungi il percorso della cartella che contiene leggimnist.py. 
+sys.path.append('../data')
+
 from leggimnist import carica_immagini_mnist, carica_etichette_mnist
 
 X_train = carica_immagini_mnist('train-images.idx3-ubyte')

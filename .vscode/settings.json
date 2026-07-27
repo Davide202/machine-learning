@@ -1,6 +1,7 @@
 {
     "python.analysis.autoImportCompletions": true,
     "python.analysis.extraPaths": [
-        "./4apprendimentosupervisionato"
+        "./4apprendimentosupervisionato",
+        "./data"
     ]
 }
